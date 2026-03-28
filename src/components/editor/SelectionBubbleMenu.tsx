@@ -33,8 +33,8 @@ function B({
       title={title}
       onMouseDown={(e) => e.preventDefault()}
       onClick={onClick}
-      className={`inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-200 transition hover:bg-zinc-700 ${
-        active ? "bg-zinc-600 text-white" : ""
+      className={`inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-700 transition hover:bg-zinc-200 dark:text-zinc-200 dark:hover:bg-zinc-700 ${
+        active ? "bg-zinc-300 text-zinc-900 dark:bg-zinc-600 dark:text-white" : ""
       }`}
     >
       {children}
@@ -48,7 +48,7 @@ export function SelectionBubbleMenu({ editor }: Props) {
       editor={editor}
       shouldShow={({ editor: ed }) => !ed.state.selection.empty}
       tippyOptions={{ duration: 120, placement: "top" }}
-      className="z-[70] flex items-center gap-0.5 rounded-lg border border-zinc-600 bg-zinc-900 px-1 py-1 shadow-xl"
+      className="z-[70] flex items-center gap-0.5 rounded-lg border border-zinc-300 bg-white px-1 py-1 shadow-xl dark:border-zinc-600 dark:bg-zinc-900"
     >
       <B
         title="Bold"
@@ -78,7 +78,7 @@ export function SelectionBubbleMenu({ editor }: Props) {
       >
         <Strikethrough className="h-4 w-4" />
       </B>
-      <div className="mx-0.5 h-5 w-px bg-zinc-600" />
+      <div className="mx-0.5 h-5 w-px bg-zinc-300 dark:bg-zinc-600" />
       <B
         title="Link"
         active={editor.isActive("link")}
@@ -96,7 +96,7 @@ export function SelectionBubbleMenu({ editor }: Props) {
       >
         <Link2 className="h-4 w-4" />
       </B>
-      <label className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-zinc-200 hover:bg-zinc-700">
+      <label className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md text-zinc-700 hover:bg-zinc-200 dark:text-zinc-200 dark:hover:bg-zinc-700">
         <Palette className="pointer-events-none h-4 w-4" />
         <input
           type="color"

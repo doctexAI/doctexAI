@@ -44,7 +44,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex h-screen min-h-0 flex-col bg-surface">
+    <div className="flex h-screen min-h-0 flex-col bg-zinc-100 dark:bg-surface">
       <Toolbar
         getHtml={() => apiRef.current?.getHtml() ?? ""}
         setHtml={(html) => apiRef.current?.setHtml(html)}
@@ -63,7 +63,7 @@ export default function Home() {
           />
         </main>
         {panelOpen && (
-          <aside className="flex h-[min(42vh,320px)] shrink-0 flex-col border-t border-surface-border md:h-auto md:w-[min(100%,380px)] md:border-l md:border-t-0">
+          <aside className="flex h-[min(42vh,320px)] shrink-0 flex-col overflow-hidden border-t border-zinc-200 bg-white dark:border-surface-border dark:bg-surface md:h-auto md:w-[min(100%,400px)] md:rounded-l-xl md:border-l md:border-t-0 md:shadow-[inset_1px_0_0_rgba(0,0,0,0.04)] dark:md:shadow-[inset_1px_0_0_rgba(255,255,255,0.04)]">
             <PromptPanel
               settings={settings}
               getDocumentHtml={getDocumentHtml}
