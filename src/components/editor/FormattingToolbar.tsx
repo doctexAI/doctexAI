@@ -110,8 +110,8 @@ function Btn({
       onClick={onClick}
       className={`inline-flex h-8 min-w-[2rem] shrink-0 items-center justify-center rounded border px-1.5 text-xs transition ${
         active
-          ? "border-accent bg-blue-500/20 text-blue-200"
-          : "border-transparent bg-transparent text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100"
+          ? "border-accent bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-200"
+          : "border-transparent bg-transparent text-zinc-600 hover:bg-zinc-200 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
       } ${disabled ? "pointer-events-none opacity-40" : ""}`}
     >
       {children}
@@ -120,7 +120,7 @@ function Btn({
 }
 
 function Sep() {
-  return <div className="mx-1 h-6 w-px shrink-0 bg-zinc-700" aria-hidden />;
+  return <div className="mx-1 h-6 w-px shrink-0 bg-zinc-300 dark:bg-zinc-700" aria-hidden />;
 }
 
 function textAlignValue(editor: Editor): string | null | undefined {
@@ -141,7 +141,7 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
   };
 
   return (
-    <div className="w-full shrink-0 border-b border-zinc-700 bg-zinc-900/95 px-2 py-1.5">
+    <div className="w-full shrink-0 border-b border-zinc-200 bg-white/95 px-2 py-1.5 backdrop-blur dark:border-zinc-700 dark:bg-zinc-900/95">
       <div className="flex flex-wrap items-center gap-0.5">
         {onOpenPageSetup && (
           <>
@@ -196,10 +196,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
 
         <Sep />
 
-        <label className="inline-flex h-8 items-center gap-1 rounded border border-zinc-700 bg-zinc-950 px-1.5 text-[11px] text-zinc-400">
+        <label className="inline-flex h-8 items-center gap-1 text-[11px] text-zinc-600 dark:text-zinc-400">
           <Type className="h-3 w-3 shrink-0" />
           <select
-            className="max-w-[120px] cursor-pointer bg-transparent text-zinc-200 outline-none"
+            className="formatting-toolbar-select max-w-[120px]"
             value={editor.getAttributes("textStyle").fontFamily ?? ""}
             onChange={(e) => {
               const v = e.target.value;
@@ -216,9 +216,9 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
           </select>
         </label>
 
-        <label className="inline-flex h-8 items-center gap-1 rounded border border-zinc-700 bg-zinc-950 px-1.5 text-[11px] text-zinc-400">
+        <label className="inline-flex h-8 items-center gap-1 text-[11px] text-zinc-600 dark:text-zinc-400">
           <select
-            className="w-[4.5rem] cursor-pointer bg-transparent text-zinc-200 outline-none"
+            className="formatting-toolbar-select w-[4.5rem]"
             value={
               FONT_SIZES.includes(currentFontSize(editor) as (typeof FONT_SIZES)[number])
                 ? currentFontSize(editor)
@@ -253,10 +253,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
         <Sep />
 
         <label
-          className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-zinc-700 bg-zinc-950"
+          className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-950"
           title="Text color"
         >
-          <Palette className="pointer-events-none h-3.5 w-3.5 text-zinc-400" />
+          <Palette className="pointer-events-none h-3.5 w-3.5 text-zinc-500 dark:text-zinc-400" />
           <input
             type="color"
             className="absolute inset-0 cursor-pointer opacity-0"
@@ -272,7 +272,7 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
               type="button"
               title="Highlight"
               style={{ backgroundColor: c }}
-              className="h-5 w-5 rounded border border-zinc-600"
+              className="h-5 w-5 rounded border border-zinc-300 dark:border-zinc-600"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => editor.chain().focus().toggleHighlight({ color: c }).run()}
             />
@@ -280,10 +280,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
         </div>
 
         <label
-          className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-zinc-700 bg-zinc-950"
+          className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-950"
           title="Highlight color"
         >
-          <Highlighter className="pointer-events-none h-3.5 w-3.5 text-zinc-400" />
+          <Highlighter className="pointer-events-none h-3.5 w-3.5 text-zinc-500 dark:text-zinc-400" />
           <input
             type="color"
             className="absolute inset-0 cursor-pointer opacity-0"
@@ -293,10 +293,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
         </label>
 
         <label
-          className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-zinc-700 bg-zinc-950"
+          className="relative inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-950"
           title="Text background"
         >
-          <PaintBucket className="pointer-events-none h-3.5 w-3.5 text-zinc-400" />
+          <PaintBucket className="pointer-events-none h-3.5 w-3.5 text-zinc-500 dark:text-zinc-400" />
           <input
             type="color"
             className="absolute inset-0 cursor-pointer opacity-0"
@@ -336,10 +336,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
           <AlignJustify className="h-3.5 w-3.5" />
         </Btn>
 
-        <label className="inline-flex h-8 items-center gap-1 rounded border border-zinc-700 bg-zinc-950 px-1.5 text-[11px] text-zinc-400">
+        <label className="inline-flex h-8 items-center gap-1 text-[11px] text-zinc-600 dark:text-zinc-400">
           <Baseline className="h-3 w-3" />
           <select
-            className="max-w-[5rem] cursor-pointer bg-transparent text-zinc-200 outline-none"
+            className="formatting-toolbar-select max-w-[5rem]"
             value={p.lineHeight ?? ""}
             onChange={(e) => {
               const v = e.target.value;
@@ -359,10 +359,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
           </select>
         </label>
 
-        <label className="inline-flex h-8 items-center gap-1 rounded border border-zinc-700 bg-zinc-950 px-1.5 text-[11px] text-zinc-400">
+        <label className="inline-flex h-8 items-center gap-1 text-[11px] text-zinc-600 dark:text-zinc-400">
           <span className="shrink-0">Space↑</span>
           <select
-            className="max-w-[4.5rem] cursor-pointer bg-transparent text-zinc-200 outline-none"
+            className="formatting-toolbar-select max-w-[4.5rem]"
             value={p.marginTop ?? ""}
             onChange={(e) => {
               const v = e.target.value;
@@ -378,10 +378,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
           </select>
         </label>
 
-        <label className="inline-flex h-8 items-center gap-1 rounded border border-zinc-700 bg-zinc-950 px-1.5 text-[11px] text-zinc-400">
+        <label className="inline-flex h-8 items-center gap-1 text-[11px] text-zinc-600 dark:text-zinc-400">
           <span className="shrink-0">Space↓</span>
           <select
-            className="max-w-[4.5rem] cursor-pointer bg-transparent text-zinc-200 outline-none"
+            className="formatting-toolbar-select max-w-[4.5rem]"
             value={p.marginBottom ?? ""}
             onChange={(e) => {
               const v = e.target.value;
@@ -452,10 +452,10 @@ export function FormattingToolbar({ editor, onOpenPageSetup }: Props) {
 
         <Sep />
 
-        <label className="inline-flex h-8 items-center gap-1 rounded border border-zinc-700 bg-zinc-950 px-1.5 text-[11px] text-zinc-400">
+        <label className="inline-flex h-8 items-center gap-1 text-[11px] text-zinc-600 dark:text-zinc-400">
           <Pilcrow className="h-3 w-3" />
           <select
-            className="max-w-[7rem] cursor-pointer bg-transparent text-zinc-200 outline-none"
+            className="formatting-toolbar-select max-w-[7rem]"
             value={
               editor.isActive("heading", { level: 1 })
                 ? "h1"

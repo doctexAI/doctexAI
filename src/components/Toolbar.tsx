@@ -10,6 +10,7 @@ import {
   Trash2,
   PanelRight,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { saveDocumentHtml } from "@/lib/settings";
 import type { DocumentLayout } from "@/lib/documentLayout";
 
@@ -121,8 +122,8 @@ export function Toolbar({
   }
 
   return (
-    <header className="flex h-11 w-full shrink-0 items-center gap-1 border-b border-surface-border bg-surface-raised px-2">
-      <span className="mr-2 px-2 font-mono text-xs font-semibold tracking-tight text-zinc-200">
+    <header className="flex h-11 w-full shrink-0 items-center gap-1 border-b border-zinc-200 bg-white px-2 dark:border-surface-border dark:bg-surface-raised">
+      <span className="mr-2 px-2 font-mono text-xs font-semibold tracking-tight text-zinc-800 dark:text-zinc-200">
         DocTex
       </span>
       <input
@@ -135,7 +136,7 @@ export function Toolbar({
       <button
         type="button"
         onClick={() => importRef.current?.click()}
-        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-300 hover:bg-surface-overlay hover:text-zinc-100"
+        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-surface-overlay dark:hover:text-zinc-100"
         title="Import .docx"
       >
         <FileUp className="h-3.5 w-3.5" />
@@ -144,7 +145,7 @@ export function Toolbar({
       <button
         type="button"
         onClick={downloadHtml}
-        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-300 hover:bg-surface-overlay hover:text-zinc-100"
+        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-surface-overlay dark:hover:text-zinc-100"
         title="Export HTML"
       >
         <FileCode className="h-3.5 w-3.5" />
@@ -153,18 +154,21 @@ export function Toolbar({
       <button
         type="button"
         onClick={() => void downloadDocx()}
-        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-300 hover:bg-surface-overlay hover:text-zinc-100"
+        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-surface-overlay dark:hover:text-zinc-100"
         title="Export Word"
       >
         <FileDown className="h-3.5 w-3.5" />
         Word
       </button>
       <div className="flex-1" />
+      <ThemeToggle />
       <button
         type="button"
         onClick={onTogglePanel}
         className={`flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs ${
-          panelOpen ? "bg-surface-overlay text-zinc-100" : "text-zinc-400 hover:bg-surface-overlay"
+          panelOpen
+            ? "bg-zinc-200 text-zinc-900 dark:bg-surface-overlay dark:text-zinc-100"
+            : "text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-surface-overlay"
         }`}
         title="Toggle AI panel"
       >
@@ -174,7 +178,7 @@ export function Toolbar({
       <button
         type="button"
         onClick={onOpenSettings}
-        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-300 hover:bg-surface-overlay hover:text-zinc-100"
+        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-surface-overlay dark:hover:text-zinc-100"
         title="Settings"
       >
         <Settings className="h-3.5 w-3.5" />
@@ -183,7 +187,7 @@ export function Toolbar({
       <button
         type="button"
         onClick={clearDoc}
-        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-500 hover:bg-red-950/40 hover:text-red-300"
+        className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-xs text-zinc-500 hover:bg-red-100 hover:text-red-800 dark:hover:bg-red-950/40 dark:hover:text-red-300"
         title="Clear document"
       >
         <Trash2 className="h-3.5 w-3.5" />

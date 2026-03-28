@@ -8,16 +8,45 @@
 }
 
 body {
-  @apply bg-surface text-zinc-100 antialiased;
+  @apply bg-zinc-100 text-zinc-900 antialiased dark:bg-surface dark:text-zinc-100;
+}
+
+/* Formatting toolbar: native <select> — light + dark */
+.formatting-toolbar-select {
+  color-scheme: light;
+  @apply rounded border border-zinc-300 bg-white py-0.5 pl-1.5 pr-7 text-xs text-zinc-900 outline-none;
+}
+
+.dark .formatting-toolbar-select {
+  color-scheme: dark;
+  @apply border-zinc-600 bg-zinc-950 text-zinc-100;
+}
+
+.formatting-toolbar-select:focus {
+  @apply border-blue-500 ring-1 ring-blue-500/30 dark:border-zinc-500 dark:ring-zinc-500/40;
+}
+
+.formatting-toolbar-select option {
+  background-color: #ffffff;
+  color: #18181b;
+}
+
+.dark .formatting-toolbar-select option {
+  background-color: #09090b;
+  color: #f4f4f5;
 }
 
 .doc-page-scroll {
   width: 100%;
   min-height: 0;
   flex: 1;
-  background: linear-gradient(180deg, #52525b 0%, #3f3f46 100%);
+  background: linear-gradient(180deg, #e4e4e7 0%, #d4d4d8 100%);
   padding: 10px 8px 28px;
   box-sizing: border-box;
+}
+
+.dark .doc-page-scroll {
+  background: linear-gradient(180deg, #52525b 0%, #3f3f46 100%);
 }
 
 .doc-page-sheet {

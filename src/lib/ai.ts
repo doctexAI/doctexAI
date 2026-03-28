@@ -17,7 +17,7 @@ export async function streamAiChat(
       messages,
       model: settings.model,
       apiKey: settings.apiKey,
-      baseUrl: settings.baseUrl,
+      provider: settings.provider,
     }),
   });
 
